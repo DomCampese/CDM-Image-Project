@@ -1,3 +1,10 @@
+/**
+ * Focus effect on an image
+ * 
+ * References:
+ * https://p5js.org/reference/#/p5.Image/pixels
+ * https://p5js.org/examples/image-brightness.html
+ */
 
 let blurredImg;
 let originalImg;
@@ -12,8 +19,9 @@ function setup() {
     const h = windowHeight;
     createCanvas(w, h);
     pixelDensity(1);
+    /* Apply a grayscale and blur filter to the images */
     blurredImg.filter(GRAY);
-    blurredImg.filter(BLUR, 4); /* Add the blur to one image */
+    blurredImg.filter(BLUR, 4); 
     blurredImg.loadPixels();
 }
 
