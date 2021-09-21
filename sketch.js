@@ -4,6 +4,7 @@
  * References:
  * https://p5js.org/reference/#/p5.Image/pixels
  * https://p5js.org/examples/image-brightness.html
+ * https://p5js.org/reference/#/p5/filter
  */
 
 let blurredImg;
@@ -26,7 +27,7 @@ function setup() {
 }
 
 function draw() {
-    /* Set pixels minDistance pixels or less away from cursor
+    /* Set pixels that are minDistance pixels or less away from cursor
        to transparent to reveal sharp image behind */
     const minDistance = 150
     for (let x = 0; x < blurredImg.width; x++) {
