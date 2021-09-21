@@ -46,5 +46,4 @@ function draw() {
     blurredImg.updatePixels();
     image(originalImg, 0, 0);
     image(blurredImg, 0, 0); 
-    
 }
