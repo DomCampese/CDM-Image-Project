@@ -36,6 +36,7 @@ function draw() {
             let pixelDistanceFromMouse = dist(x, y, mouseX, mouseY);
             /* Results in a circle with radius minDistance */
             if (pixelDistanceFromMouse <= minDistance) {
+                // This sets the current pixel to transparent
                 blurredImg.pixels[pixelLoc + 3] = 0; // Pixel stored as [r, g, b, a] (a/alpha is transparency)
              } else {
                 // Set opaque
