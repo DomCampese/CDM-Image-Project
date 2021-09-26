@@ -1,9 +1,5 @@
 html, body {
-    margin: 20px;
     background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 canvas {
@@ -12,4 +8,8 @@ canvas {
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
+    /* Center the canvas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

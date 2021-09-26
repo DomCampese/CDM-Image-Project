@@ -7,8 +7,11 @@
  * https://p5js.org/reference/#/p5/filter
  */
 
+let lastMousePosition;
 let blurredImg;
 let originalImg;
+let circleRadius = 150;
+const shrinkRate = .05;
 
 function preload() {
     originalImg = loadImage('images/test.jpg');
@@ -16,35 +19,32 @@ function preload() {
 }
 
 function setup() {
-    const w = windowWidth;
-    const h = windowHeight;
-    createCanvas(w, h);
+    createCanvas(originalImg.width, originalImg.height);
     pixelDensity(1);
-    /* Apply a grayscale and blur filter to the images */
+    // Apply a grayscale and blur filter to the images
     blurredImg.filter(GRAY);
-    blurredImg.filter(BLUR, 4); 
+    blurredImg.filter(BLUR, 6); 
     blurredImg.loadPixels();
 }
 
 function draw() {
-    /* Set pixels that are minDistance pixels or less away from cursor
-       to transparent to reveal sharp image behind */
-    const minDistance = 150
+    /* Set pixels within circle to tranparent to reveal unfiltered image behind */
     for (let x = 0; x < blurredImg.width; x++) {
         for (let y = 0; y < blurredImg.height; y++) {
             let pixelLoc = (x + y * blurredImg.width) * 4; // 2d to 1d location
             let pixelDistanceFromMouse = dist(x, y, mouseX, mouseY);
-            /* Results in a circle with radius minDistance */
-            if (pixelDistanceFromMouse <= minDistance) {
+            // Results in a circle with radius minDistance
+            if (pixelDistanceFromMouse <= circleRadius) {
                 // This sets the current pixel to transparent
                 blurredImg.pixels[pixelLoc + 3] = 0; // Pixel stored as [r, g, b, a] (a/alpha is transparency)
-             } else {
-                // Set opaque
-                blurredImg.pixels[pixelLoc + 3] = 255;
+            } else if (blurredImg.pixels[pixelLoc + 3] == 0) {
+                    blurredImg.pixels[pixelLoc + 3] = 255;
             }
         }
     }
+    circleRadius -= shrinkRate; // Circle shrinks over time
     blurredImg.updatePixels();
     image(originalImg, 0, 0);
     image(blurredImg, 0, 0); 
+    lastMousePosition = [mouseX, mouseY];
 }
