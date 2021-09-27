@@ -12,6 +12,7 @@
  * Images (All allow edits)
  * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
  * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/ 
+ * .
  */
 
 /* Image variables */
