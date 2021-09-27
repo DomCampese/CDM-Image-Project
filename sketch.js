@@ -3,7 +3,6 @@
  * the user to cycle through them
  * 
  * References:
- * 
  * Coding resources
  * https://p5js.org/reference/#/p5.Image/pixels
  * https://p5js.org/examples/image-brightness.html
@@ -14,7 +13,6 @@
  * https://www.pexels.com/photo/person-holding-mug-and-mobile-phone-6802052/
  * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/ 
  * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
- * 
  */
 
 /* Image variables */
