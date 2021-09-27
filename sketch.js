@@ -1,4 +1,5 @@
 /**
+ * @author Dom Campese 09-27-2021
  * Creates an attention effect on a list of images and allows
  * the user to cycle through them
  * 
