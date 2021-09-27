@@ -1,5 +1,6 @@
 /**
- * Creates an attention effect on an image
+ * Creates an attention effect on a list of images and allows
+ * the user to cycle through them
  * 
  * References:
  * 
@@ -13,6 +14,7 @@
  * https://www.pexels.com/photo/person-holding-mug-and-mobile-phone-6802052/
  * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/ 
  * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
+ * https://www.pexels.com/photo/people-walking-near-high-rise-buildings-1550881/
  */
 
 /* Image variables */
@@ -33,7 +35,12 @@ function preload() {
        each row containing 2 copies of the image 
        (need blurred and normal for each image)
     */
-    let imageFiles = ['images/driving_pov.jpg', 'images/colorful_street.jpg', 'images/work.jpg'];
+    let imageFiles = [
+        'images/driving_pov.jpg', 
+        'images/work.jpg',
+        'images/walk.jpg',
+        'images/colorful_street.jpg', 
+    ];
     for (let i = 0; i < imageFiles.length; i++) {
         images.push(
             [loadImage(imageFiles[i]), loadImage(imageFiles[i])]
@@ -46,7 +53,7 @@ function setup() {
     cycleImage();
     createCanvas(originalImg.width, originalImg.height);
     let button = createButton("Next Scene");
-    button.position(windowWidth - 100, windowHeight / 2);
+    button.position(windowWidth - 200, windowHeight / 2 - 10);
     button.mousePressed(cycleImage);
 }
 
