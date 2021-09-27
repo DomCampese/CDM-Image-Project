@@ -3,13 +3,11 @@ html, body {
 }
 
 canvas {
+    margin-top: 100px;
     user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
-    /* Center the canvas */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
 }

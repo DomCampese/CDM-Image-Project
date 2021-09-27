@@ -2,29 +2,71 @@
  * Focus effect on an image
  * 
  * References:
+ * 
+ * Code tutorials
  * https://p5js.org/reference/#/p5.Image/pixels
  * https://p5js.org/examples/image-brightness.html
  * https://p5js.org/reference/#/p5/filter
+ * https://www.youtube.com/watch?v=Pn1g1wjxl_0
+ * 
+ * Images (All allow edits)
+ * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
+ * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/
+ * 
  */
 
-let lastMousePosition;
+/* Image variables */
+let images = [];
+let currentImageSet = -1;
 let blurredImg;
 let originalImg;
-let circleRadius = 150;
-const shrinkRate = .05;
+
+/* Attention circle variables */
+const maxCircleRadius = 150;
+const minCircleRadius = 50;
+let currentCircleRadius = maxCircleRadius; // start at max
+let isCircleShrinking = true;
+const circleChangeRate = .05;
 
 function preload() {
-    originalImg = loadImage('images/test.jpg');
-    blurredImg = loadImage('images/test.jpg');
+    /* Preload all images to be displayed to a 2d array 
+       each row containing 2 copies of the image 
+       (need blurred and normal for each image)
+    */
+    let imageFiles = ['images/colorful_street.jpg', 'images/driving_pov.jpg'];
+    for (let i = 0; i < imageFiles.length; i++) {
+        images.push(
+            [loadImage(imageFiles[i]), loadImage(imageFiles[i])]
+        );
+    }
 }
 
 function setup() {
-    createCanvas(originalImg.width, originalImg.height);
     pixelDensity(1);
-    // Apply a grayscale and blur filter to the images
-    blurredImg.filter(GRAY);
-    blurredImg.filter(BLUR, 6); 
+    cycleImage();
+    createCanvas(originalImg.width, originalImg.height);
+    let button = createButton("Next Scene");
+    button.position(0, 0);
+    button.mousePressed(cycleImage);
+}
+
+function cycleImage() {
+    /* Display next image or first image again */
+    if (++currentImageSet >= images.length) {
+        currentImageSet = 0; // display first image
+    }
+
+    // Set image variables to the next in the list
+    originalImg = images[currentImageSet][0];
+    // Filter the image directly in array - gets darker and blurrier
+    // as you cycle through
+    images[currentImageSet][1].filter(BLUR, 5);
+    images[currentImageSet][1].filter(GRAY);
+    blurredImg = images[currentImageSet][1];
+    
+    // Set up new image
     blurredImg.loadPixels();
+    resizeCanvas(blurredImg.width, blurredImg.height);
 }
 
 function draw() {
@@ -34,17 +76,31 @@ function draw() {
             let pixelLoc = (x + y * blurredImg.width) * 4; // 2d to 1d location
             let pixelDistanceFromMouse = dist(x, y, mouseX, mouseY);
             // Results in a circle with radius minDistance
-            if (pixelDistanceFromMouse <= circleRadius) {
+            if (pixelDistanceFromMouse <= currentCircleRadius) {
                 // This sets the current pixel to transparent
                 blurredImg.pixels[pixelLoc + 3] = 0; // Pixel stored as [r, g, b, a] (a/alpha is transparency)
-            } else if (blurredImg.pixels[pixelLoc + 3] == 0) {
-                    blurredImg.pixels[pixelLoc + 3] = 255;
+            } else {
+                blurredImg.pixels[pixelLoc + 3] = 255;
             }
         }
     }
-    circleRadius -= shrinkRate; // Circle shrinks over time
+
+    // Change state to shrinking or growing depending on circle radius
+    if (currentCircleRadius >= maxCircleRadius) {
+        isCircleShrinking = true; // start shrinking
+    }
+    if (currentCircleRadius <= minCircleRadius) {
+        isCircleShrinking = false; // start growing
+    }
+
+    // Carry out the actual shrinking
+    if (isCircleShrinking) {
+        currentCircleRadius -= circleChangeRate; // Circle shrinks over time
+    } else {
+        currentCircleRadius += circleChangeRate;
+    }
+    
     blurredImg.updatePixels();
     image(originalImg, 0, 0);
     image(blurredImg, 0, 0); 
-    lastMousePosition = [mouseX, mouseY];
 }
