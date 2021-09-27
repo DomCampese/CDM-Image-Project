@@ -14,7 +14,7 @@
  * https://www.pexels.com/photo/person-holding-mug-and-mobile-phone-6802052/
  * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/ 
  * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
- * https://www.pexels.com/photo/people-walking-near-high-rise-buildings-1550881/
+ * 
  */
 
 /* Image variables */
@@ -38,7 +38,6 @@ function preload() {
     let imageFiles = [
         'images/driving_pov.jpg', 
         'images/work.jpg',
-        'images/walk.jpg',
         'images/colorful_street.jpg', 
     ];
     for (let i = 0; i < imageFiles.length; i++) {
@@ -52,16 +51,34 @@ function setup() {
     pixelDensity(1);
     cycleImage();
     createCanvas(originalImg.width, originalImg.height);
-    let button = createButton("Next Scene");
-    button.position(windowWidth - 200, windowHeight / 2 - 10);
-    button.mousePressed(cycleImage);
+    let nextButton = createButton("Next");
+    let t = true, f = false; 
+    nextButton.position(windowWidth - 200, windowHeight / 2 - 30);
+    nextButton.mousePressed(() => {
+        cycleImage(true); // cycle to next
+    });
+    let previousButton = createButton("Prev");
+    previousButton.position(50, windowHeight / 2 - 30);
+    previousButton.mousePressed(() => {
+        cycleImage(false); // cycle to previous
+    });
 }
 
-function cycleImage() {
+// next parameter decides if next or previous
+function cycleImage(next) {
     /* Display next image or first image again */
-    if (++currentImageSet >= images.length) {
-        currentImageSet = 0; // display first image
+    if (next) {
+        // Move forward or wrap around
+        if (++currentImageSet >= images.length) {
+            currentImageSet = 0; // display first image
+        }
+    } else {
+        // Move backwards or wrap around
+        if (--currentImageSet < 0) {
+            currentImageSet = images.length-1;
+        }
     }
+    
 
     // Set image variables to the next in the list
     originalImg = images[currentImageSet][0];
