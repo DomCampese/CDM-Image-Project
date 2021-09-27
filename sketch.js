@@ -16,7 +16,7 @@
 
 /* Image variables */
 let images = [];
-let currentImageSet = -1;
+let currentImageSet = -1; // cycle at the start leading to set #0
 let blurredImg;
 let originalImg;
 
