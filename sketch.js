@@ -1,5 +1,5 @@
 /**
- * Focus effect on an image
+ * Creates an attention effect on an image
  * 
  * References:
  * 
@@ -11,7 +11,7 @@
  * 
  * Images (All allow edits)
  * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
- * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/
+ * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/ 
  */
 
 /* Image variables */
