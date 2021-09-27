@@ -3,16 +3,15 @@
  * 
  * References:
  * 
- * Code tutorials
+ * Coding resources
  * https://p5js.org/reference/#/p5.Image/pixels
  * https://p5js.org/examples/image-brightness.html
  * https://p5js.org/reference/#/p5/filter
- * https://www.youtube.com/watch?v=Pn1g1wjxl_0
+ * https://p5js.org/reference/#/p5/createButton
  * 
  * Images (All allow edits)
  * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
  * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/
- * 
  */
 
 /* Image variables */
@@ -46,7 +45,7 @@ function setup() {
     cycleImage();
     createCanvas(originalImg.width, originalImg.height);
     let button = createButton("Next Scene");
-    button.position(0, 0);
+    button.position(originalImg.width + 100, originalImg.height / 2 + 50);
     button.mousePressed(cycleImage);
 }
 
@@ -70,6 +69,7 @@ function cycleImage() {
 }
 
 function draw() {
+    frameRate(20);
     /* Set pixels within circle to tranparent to reveal unfiltered image behind */
     for (let x = 0; x < blurredImg.width; x++) {
         for (let y = 0; y < blurredImg.height; y++) {
