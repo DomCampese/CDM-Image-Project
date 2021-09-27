@@ -33,7 +33,7 @@ function preload() {
        each row containing 2 copies of the image 
        (need blurred and normal for each image)
     */
-    let imageFiles = ['images/driving_pov.jpg', 'images/colorful_street.jpg', 'work.jpg'];
+    let imageFiles = ['images/driving_pov.jpg', 'images/colorful_street.jpg', 'images/work.jpg'];
     for (let i = 0; i < imageFiles.length; i++) {
         images.push(
             [loadImage(imageFiles[i]), loadImage(imageFiles[i])]
@@ -46,7 +46,7 @@ function setup() {
     cycleImage();
     createCanvas(originalImg.width, originalImg.height);
     let button = createButton("Next Scene");
-    button.position(originalImg.width + 100, originalImg.height / 2 + 50);
+    button.position(windowWidth - 100, windowHeight / 2);
     button.mousePressed(cycleImage);
 }
 
