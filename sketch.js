@@ -10,9 +10,9 @@
  * https://p5js.org/reference/#/p5/createButton
  * 
  * Images (All allow edits)
- * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
+ * https://www.pexels.com/photo/person-holding-mug-and-mobile-phone-6802052/
  * https://www.pexels.com/photo/person-holding-bmw-steering-wheel-2526128/ 
- * .
+ * https://www.flickr.com/photos/kimncris/5759421115/sizes/c/
  */
 
 /* Image variables */
@@ -33,7 +33,7 @@ function preload() {
        each row containing 2 copies of the image 
        (need blurred and normal for each image)
     */
-    let imageFiles = ['images/colorful_street.jpg', 'images/driving_pov.jpg'];
+    let imageFiles = ['images/driving_pov.jpg', 'images/colorful_street.jpg', 'work.jpg'];
     for (let i = 0; i < imageFiles.length; i++) {
         images.push(
             [loadImage(imageFiles[i]), loadImage(imageFiles[i])]
