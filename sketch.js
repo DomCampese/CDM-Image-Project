@@ -23,11 +23,11 @@ let blurredImg;
 let originalImg;
 
 /* Attention circle variables */
-const maxCircleRadius = 150;
+const maxCircleRadius = 250;
 const minCircleRadius = 50;
 let currentCircleRadius = maxCircleRadius; // start at max
 let isCircleShrinking = true;
-const circleChangeRate = .05;
+const circleChangeRate = .08;
 
 function preload() {
     /* Preload all images to be displayed to a 2d array 
