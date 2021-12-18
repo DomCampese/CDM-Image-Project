@@ -27,7 +27,7 @@ const maxCircleRadius = 250;
 const minCircleRadius = 25;
 let currentCircleRadius = maxCircleRadius; // start at max
 let isCircleShrinking = true;
-const circleChangeRate = .25;
+const circleChangeRate = .4;
 
 function preload() {
     /* Preload all images to be displayed to a 2d array 
